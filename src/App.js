@@ -6,7 +6,7 @@ import './App.css';
 class App extends React.Component {
 
   async componentDidMount() {
-    setInterval(this.getRequest, 2000);
+    setInterval(this.getRequest, 60000);
 
   }
 
