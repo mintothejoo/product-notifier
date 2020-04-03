@@ -15,6 +15,7 @@ class App extends React.Component {
       .get('https://product-availability-server.herokuapp.com/')
       .withCredentials()
       .accept('json')
+    console.log(call);
   }
   
   render() {
