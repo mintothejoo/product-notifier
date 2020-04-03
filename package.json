@@ -9,6 +9,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "react-sound": "^1.2.0",
     "superagent": "^5.2.2"
   },
   "scripts": {

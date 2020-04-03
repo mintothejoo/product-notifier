@@ -1,13 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import request from 'superagent';
+import soundfile from './sound.wav';
+import Sound from 'react-sound';
 import './App.css';
 
 class App extends React.Component {
+  state = {
+    text: "",
+    alarm: false,
+    link: "Link will appear here",
+  }
 
   async componentDidMount() {
-    setInterval(this.getRequest, 60000);
-
+    setInterval(this.getRequest, 30000);
   }
 
   getRequest = async () => {
@@ -15,25 +20,34 @@ class App extends React.Component {
       .get('https://product-availability-server.herokuapp.com/')
       .withCredentials()
       .accept('json')
-    console.log(call);
+    call = call.body;
+    this.setState({
+      text: call.message,
+      alarm: !call.isNotAvailable,
+      link: call.weblink || "Link will appear here",
+    })
   }
   
   render() {
+    const { text, alarm, link } = this.state;
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            Learn React
-          </a>
+          <p>Status: {text}</p>
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          {alarm && (
+            <>
+            <Sound
+              url={soundfile}
+              playStatus={Sound.status.PLAYING}
+              onLoading={this.handleSongLoading}
+              onPlaying={this.handleSongPlaying}
+              onFinishedPlaying={this.handleSongFinishedPlaying}
+              />
+            <p> AVAILABLE! </p>
+            </>
+          )}
+          <p>Link: {link}</p>
         </header>
       </div>
     );
