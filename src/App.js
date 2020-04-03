@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    setInterval(this.getRequest, 30000);
+    setInterval(this.getRequest, 10000);
   }
 
   getRequest = async () => {
