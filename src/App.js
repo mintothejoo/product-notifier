@@ -18,7 +18,7 @@ class App extends React.Component {
 
   getRequest = async () => {
     let call = await request
-      .get('http://localhost:3100')
+      .get('https://product-availability-server.herokuapp.com/')
       .withCredentials()
       .accept('json')
     call = call.body;
