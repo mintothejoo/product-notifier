@@ -22,7 +22,6 @@ class App extends React.Component {
       .withCredentials()
       .accept('json')
     call = call.body;
-    console.log(call);
     const { message, isNotAvailable, links, location } = call;
     let available = false;
     let availableLinks = [];
